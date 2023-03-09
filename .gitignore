@@ -35,5 +35,4 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # To ignore
-tsconfig.build.json
-tsconfig.json
+.env
