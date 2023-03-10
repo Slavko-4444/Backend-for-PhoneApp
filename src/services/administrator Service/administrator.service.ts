@@ -6,7 +6,7 @@ import { AddAdmnistratorDto } from 'src/dto/administrator/administrator.dto';
 import { EditAdministratorDto } from 'src/dto/administrator/edit.administrator.dto';
 import { ApiResponse } from 'src/msci/api.response';
 import { Repository } from 'typeorm';
-
+import * as crypto from "crypto";
 @Injectable()
 export class AdministratorService {
 
@@ -17,6 +17,9 @@ export class AdministratorService {
     
     getAlladministrators(): Promise<Administrator[]> {
         return this.administrator.find();
+    }
+    getById(administratorId: number): Promise<Administrator> {
+        return this.administrator.findOneById(administratorId);
     }
 
     addNewAdmin(data: AddAdmnistratorDto): Promise<Administrator | ApiResponse>{
@@ -49,7 +52,6 @@ export class AdministratorService {
         }
         
         if (data.password !== undefined) {
-            const crypto = require('crypto');
             const passwordHash = crypto.createHash('sha512');
             
             passwordHash.update(data.password);
@@ -62,4 +64,16 @@ export class AdministratorService {
         return this.administrator.save(admin);
     }
     
+
+    async getByUsername(username: string): Promise<Administrator | null> {
+        
+        const admin : Administrator = await this.administrator.findOneBy({
+            username: username
+        });
+         
+        if (admin === undefined)
+            return null;
+        
+        return admin;
+    }
 }

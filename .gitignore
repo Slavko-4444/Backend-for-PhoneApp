@@ -36,3 +36,4 @@ lerna-debug.log*
 
 # To ignore
 .env
+ config/jwt.Secrect.ts

@@ -1,12 +1,12 @@
 
 export class ApiResponse {
-    status: string;
-    errorStatus: number;
+    error: string;
+    statusCode: number;
     message: string | null;
 
     constructor(status: string, err: number, m: string | null) {
-        this.status = status;
-        this.errorStatus = err;
+        this.error = status;
+        this.statusCode = err;
         this.message = m;
     }
 }

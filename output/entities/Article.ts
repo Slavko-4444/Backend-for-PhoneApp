@@ -10,9 +10,6 @@ export class Article {
   @Column("varchar", { name: "title", length: 50, default: () => "'0'" })
   title: string;
 
-  @Column("varchar", { name: "name", length: 20, default: () => "'0'" })
-  name: string;
-
   @Column("varchar", { name: "excerpt", length: 255, default: () => "'0'" })
   excerpt: string;
 
